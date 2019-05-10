@@ -2,18 +2,6 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 
-// import VuexPersist from 'vuex-persist';
-
-// const vuexPersist = new VuexPersist({
-//   key: 'my-app',
-//   storage: sessionStorage
-// })
-
-// const store = new Vuex.Store({
-//   //...initialization
-//   plugins: [vuexPersist.plugin]
-// })
-
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -28,8 +16,8 @@ export default new Vuex.Store({
     loginStop: (state, res) => {
       state.loggingIn = false;
       if (res) {
-        console.log(res.status);
         if (res.status === 200) {
+          state.loginError = null;
           state.loginSuccessful = true;
         }
         if (
@@ -43,9 +31,15 @@ export default new Vuex.Store({
           state.loginSuccessful = false;
         }
       }
-    }
+    },
+    loginFalse: state => (state.loginSuccessful = false)
   },
   actions: {
+    removeToken({ commit }) {
+      localStorage.removeItem("token");
+      commit("loginFalse");
+    },
+
     doLogin({ commit }, loginData) {
       commit("loginStart");
 
@@ -56,8 +50,6 @@ export default new Vuex.Store({
           commit("loginStop", res);
           const token = res.data.access_token;
           localStorage.setItem("token", token);
-          console.log(token);
-          // console.log(res);
         })
         .catch(error => {
           commit("loginStop", error.response);

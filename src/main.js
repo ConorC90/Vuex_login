@@ -3,7 +3,6 @@ import "./plugins/vuetify";
 import App from "./App.vue";
 import store from "./store";
 import "vuetify/dist/vuetify.min.css";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 
 Vue.config.productionTip = false;
 

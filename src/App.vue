@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <Login/>
-    <!-- <App2/> -->
   </div>
 </template>
 
@@ -17,13 +16,6 @@ export default {
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  display: flex;
-  justify-content: center;
   background-color: #f4f4f4;
 }
 </style>
